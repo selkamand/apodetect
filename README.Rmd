@@ -1,0 +1,74 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# apodetect
+
+<!-- badges: start -->
+
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+> [!WARNING]  
+> This package is in early development and not yet ready for use
+
+**apodetect** identifies APOBEC-enriched samples and classifies the type of APOBEC identified based on positional biases (diffuse, focal, mixed) and most probable mutator enzyme (APOBEC3A or APOBEC3B).
+
+Existing signature-powered approaches consistently miss APOBEC-induced tumours when contributing only low numbers of APOBEC. No method yet exists that describes the full complement of APOBEC-relevant features.
+
+## Approach
+
+Detecting and quantifying the proportion of APOBEC enrichment
+
+1.  Count the number of mutations that match the common APOBEC-trinucleotide biases
+    a.  [C\>G] TCA\>TGA; TCT\>TGT; TCC\>TGC (less common)
+    b.  [C\>T] TCA\>TTA; TCT\>TTT; TCC\>TTC (less common)
+2.  Count 4bp motifs contexts (helps differentiate APOBEC3A from APOBEC3B) (10.1038/s41467-024-46231-w).
+    a.  A3A prefers YTCW motifs (where Y = C or T; W = A or T).
+    b.  A3B prefers RTCW motifs (where R = G or A; W = A or T)
+
+<!-- -->
+
+3.  Quantify if the ratios of TCA\>TGA:TCC\>TGC & TCA\>TTA:TCC\>TTC (if these deviate substantially from expected, it suggests dilution by other signatures).
+4.  Quantify the bias of these types of mutations to the lagging strand (APOBEC mutations are consistently biased to lagging-strand)
+5.  Quantify the bias of candidate mutations to hairpin stuctures (10.1126/science.aaw2872)
+6.  Quantify the number of mutations at the 3' end of 3-nucleotide hairpins vs 4-nucleotide hairpins. A higher 3nt hairpin ratio suggests A3B. We may want to plot the See Supp Figure S2 of (10.1038/s41467-024-46231-w).
+
+Classifying APOBEC as diffuse, focal, or mixed
+
+1.  Annotate probable APOBEC mutations
+2.  Identify sites of kataegis (mutation density)
+3.  Quantify the proportion of APOBEC mutations that are part of regions of kataegis (clustered)
+4.  Quantify the proportion of 'free' (non kataegis-proximal) APOBEC
+5.  [todo] figure a sensible approach for checking if this 'free' APOBEC is actually uniformly distributed (min TMB is probably required) - maybe just having a decent proportion of non-kataegis proximal APOBEC is sufficient?
+6.  If \> 80% of APOBEC mutations are clustered then class = 'focal'. If \< 10% of APOBEC mutations are clustered, then class = 'diffuse'. Anything else we assume is 'mixed'.
+
+## Installation
+
+You can install the development version of apodetect from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("selkamand/apodetect")
+```
+
+## Quick Start
+
+Coming Soon
+
+```{r example}
+library(apodetect)
+## basic example code
+```
