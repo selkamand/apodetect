@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![R-CMD-check](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
-> [!WARNING]  
+> [!WARNING]\
 > This package is in early development and not yet ready for use
 
 **apodetect** identifies APOBEC-enriched samples and classifies the type of APOBEC identified based on positional biases (diffuse, focal, mixed) and most probable mutator enzyme (APOBEC3A or APOBEC3B).
@@ -30,7 +30,7 @@ Existing signature-powered approaches consistently miss APOBEC-induced tumours w
 
 ## Approach
 
-Detecting and quantifying the proportion of APOBEC enrichment
+**Detecting and quantifying the proportion of APOBEC enrichment**
 
 1.  Count the number of mutations that match the common APOBEC-trinucleotide biases
     a.  [C\>G] TCA\>TGA; TCT\>TGT; TCC\>TGC (less common)
@@ -38,15 +38,12 @@ Detecting and quantifying the proportion of APOBEC enrichment
 2.  Count 4bp motifs contexts (helps differentiate APOBEC3A from APOBEC3B) (10.1038/s41467-024-46231-w).
     a.  A3A prefers YTCW motifs (where Y = C or T; W = A or T).
     b.  A3B prefers RTCW motifs (where R = G or A; W = A or T)
-
-<!-- -->
-
 3.  Quantify if the ratios of TCA\>TGA:TCC\>TGC & TCA\>TTA:TCC\>TTC (if these deviate substantially from expected, it suggests dilution by other signatures).
 4.  Quantify the bias of these types of mutations to the lagging strand (APOBEC mutations are consistently biased to lagging-strand)
 5.  Quantify the bias of candidate mutations to hairpin stuctures (10.1126/science.aaw2872)
 6.  Quantify the number of mutations at the 3' end of 3-nucleotide hairpins vs 4-nucleotide hairpins. A higher 3nt hairpin ratio suggests A3B. We may want to plot the See Supp Figure S2 of (10.1038/s41467-024-46231-w).
 
-Classifying APOBEC as diffuse, focal, or mixed
+**Classifying APOBEC as diffuse, focal, or mixed**
 
 1.  Annotate probable APOBEC mutations
 2.  Identify sites of kataegis (mutation density)

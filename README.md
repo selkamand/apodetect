@@ -7,6 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/apodetect/actions/workflows/R-CMD-check.yaml)
 
 <!-- badges: end -->
 
@@ -23,7 +24,7 @@ exists that describes the full complement of APOBEC-relevant features.
 
 ## Approach
 
-Detecting and quantifying the proportion of APOBEC enrichment
+**Detecting and quantifying the proportion of APOBEC enrichment**
 
 1.  Count the number of mutations that match the common
     APOBEC-trinucleotide biases
@@ -33,9 +34,6 @@ Detecting and quantifying the proportion of APOBEC enrichment
     APOBEC3B) (10.1038/s41467-024-46231-w).
     1.  A3A prefers YTCW motifs (where Y = C or T; W = A or T).
     2.  A3B prefers RTCW motifs (where R = G or A; W = A or T)
-
-<!-- -->
-
 3.  Quantify if the ratios of TCA\>TGA:TCC\>TGC & TCA\>TTA:TCC\>TTC (if
     these deviate substantially from expected, it suggests dilution by
     other signatures).
@@ -48,7 +46,7 @@ Detecting and quantifying the proportion of APOBEC enrichment
     suggests A3B. We may want to plot the See Supp Figure S2 of
     (10.1038/s41467-024-46231-w).
 
-Classifying APOBEC as diffuse, focal, or mixed
+**Classifying APOBEC as diffuse, focal, or mixed**
 
 1.  Annotate probable APOBEC mutations
 2.  Identify sites of kataegis (mutation density)
